@@ -8,7 +8,7 @@ class Gene:
         if data is not None:
             self.data = data
         else:
-            self.data = random.sample(range(0, 9), gene_size)
+            self.data = random.sample(range(0, 10), gene_size)
         self.fitness = 0
 
     def __str__(self):
@@ -70,12 +70,12 @@ class Chromosome:
     def mutate(g: Gene, mutation_rate: float):
         for i in range(len(g.data)):
             if random.random() < mutation_rate:
-                g.data[i] = random.choice(range(0, 9))
+                g.data[i] = random.choice(range(0, 10))
                 g.fitness = Chromosome.get_fitness(g.data, Chromosome.answer)
 
 
 def main():
-    answer = random.sample(range(0, 9), 4)  # get random answer
+    answer = random.sample(range(0, 10), 4)  # get random answer
     # answer = [5, 4, 2, 6]
     gene_size = 4
     population_size = 10
