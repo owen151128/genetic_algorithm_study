@@ -41,7 +41,7 @@ class Chromosome:
     @staticmethod
     def get_fitness(data: list, answer: list) -> int:
         strike_score = len([True for i, g in enumerate(data) if g is answer[i]]) * 150
-        ball_score = len([True for i in data if i in answer]) * 100
+        ball_score = len([True for i, d in enumerate(data) if d != answer[i] and d in answer]) * 100
 
         return strike_score + ball_score
 
@@ -88,7 +88,7 @@ def main():
     print(f'{count} Generation')
     print(chromosome)
 
-    while len([i.fitness for i in chromosome.genes if i.fitness >= 1000]) < 1:
+    while len([i.fitness for i in chromosome.genes if i.fitness >= 600]) < 1:
         new_genes = []
         for _ in range(population_size // 2):
             gene_1, gene_2 = Chromosome.crossover(chromosome.genes)
